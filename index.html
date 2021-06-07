@@ -71,7 +71,7 @@
         #circle {
             position: fixed;
             bottom: 6vh;
-            right: 15vw;
+            right: 14vw;
             width: 14vw;
             animation: bouncing 4.5s ease-in-out 0s infinite alternate both;
         }
@@ -105,7 +105,7 @@
 <img src="dots.svg" alt="" id="dots">
 <img src="squares.svg" alt="" id="squares">
 <script>
-    const GOAL = Date.parse("2021-07-30T14:00:00");
+    const GOAL = Date.parse("2021-06-30T14:00:00");
     const countdownElement = document.getElementById("countdown");
 
     function cycle() {
@@ -114,13 +114,15 @@
             countdownElement.innerHTML = "00:00:00";
             return
         }
+        let days = Math.floor(delta / (1000 * 60 * 60 * 24));
         let hours = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         let minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
         let seconds = Math.floor((delta % (1000 * 60)) / 1000);
+        days = days > 0 ? days + ":" : "";
         hours = hours < 10 ? "0" + hours : hours;
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
-        countdownElement.innerHTML = `${hours}:${minutes}:${seconds}`;
+        countdownElement.innerHTML = `${days}${hours}:${minutes}:${seconds}`;
         window.requestAnimationFrame(cycle);
     }
 
